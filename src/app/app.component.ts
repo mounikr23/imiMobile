@@ -19,8 +19,6 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
   ]
 })
 export class AppComponent {
-  samples = 'blah';
-  showthis:boolean = false;
   displayedColumns = ['select', 'name','reference',  'date', 'deployments', 'volume'];
   //dataSource = new MatTableDataSource<Element>(ELEMENT_DATA);
   dataSource = new ExampleDataSource();
@@ -50,10 +48,6 @@ isAllSelected() {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
     this.dataSource.data.filter = filterValue;
-  }
-  sampleFunc() {
-  	console.log('this works', this.dataSource)
-    //this.showthis = !this.showthis;
   }
 }
 export interface Element {
