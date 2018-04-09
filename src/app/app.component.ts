@@ -22,11 +22,12 @@ export class AppComponent {
   samples = 'blah';
   showthis:boolean = false;
   displayedColumns = ['select', 'name','reference',  'date', 'deployments', 'volume'];
+  //dataSource = new MatTableDataSource<Element>(ELEMENT_DATA);
   dataSource = new ExampleDataSource();
   isExpansionDetailRow = (i: number, row: Object) => row.hasOwnProperty('detailRow');
   expandedElement: any;
   selection = new SelectionModel<Element>(true, []);
-  deployments = [
+  builds = [
     {value: 'All', viewValue: 'All Deployments'},
     {value: 'Delayed', viewValue: 'Delayed'},
     {value: 'Priority', viewValue: 'Priority'}
@@ -58,13 +59,13 @@ isAllSelected() {
 export interface Element {
   name: string;
   reference: number;
-  deployments: number;
+  deployments: any;
   volume: string;
   date: string;
   content: string;
 }
 
-const data: Element[] = [
+const ELEMENT_DATA: Element[] = [
   { reference: Math.floor(100000 + Math.random() * 900000), name: 'Hydrogen', deployments: 1.0079, volume: 'H', date: 'Dec, 13 2017', content:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.' },
   { reference: Math.floor(100000 + Math.random() * 900000), name: 'Helium', deployments: 4.0026, volume: 'He', date: 'Jan, 31 2017', content:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.' },
   { reference: Math.floor(100000 + Math.random() * 900000), name: 'Lithium', deployments: 6.941, volume: 'Li', date: 'Feb, 11 2016', content:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.' },
@@ -90,8 +91,7 @@ export class ExampleDataSource extends DataSource<any> {
   /** Connect function called by the table to retrieve one stream containing the data to render. */
   connect(): Observable<Element[]> {
     const rows = [];
-    data.forEach(element => rows.push(element, { detailRow: true, element }));
-    console.log(rows);
+    ELEMENT_DATA.forEach(element => rows.push(element, { detailRow: true, element }));
     return Observable.of(rows);
   }
 

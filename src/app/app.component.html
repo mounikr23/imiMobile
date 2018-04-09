@@ -18,7 +18,7 @@
     <h3>Campaigns Listing for</h3>
       <mat-form-field>
         <mat-select [(value)]="selected">
-          <mat-option *ngFor="let deployment of deployments" [value]="deployment.value">
+          <mat-option *ngFor="let deployment of builds" [value]="deployment.value">
             {{ deployment.viewValue }}
           </mat-option>
         </mat-select>
