@@ -97,3 +97,6 @@ h3{
     border: 20px solid lightgray;
     padding: 10px;
 }
+.mat-column-select{
+	overflow: visible;
+}

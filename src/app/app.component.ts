@@ -20,8 +20,9 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 })
 export class AppComponent {
   displayedColumns = ['select', 'name','reference',  'date', 'deployments', 'volume'];
-  //dataSource = new MatTableDataSource<Element>(ELEMENT_DATA);
-  dataSource = new ExampleDataSource();
+  //comment line 24 and uncomment line 25 after build
+  dataSource = new MatTableDataSource<Element>(ELEMENT_DATA);
+  //dataSource = new ExampleDataSource();
   isExpansionDetailRow = (i: number, row: Object) => row.hasOwnProperty('detailRow');
   expandedElement: any;
   selection = new SelectionModel<Element>(true, []);
@@ -31,23 +32,20 @@ export class AppComponent {
     {value: 'Priority', viewValue: 'Priority'}
   ];
   selected = 'All';
-  //console.log(selected);
 isAllSelected() {
-	console.log(this.dataSource)
     const numSelected = this.selection.selected.length;
+      //comment line 38 and uncomment line 39 after build
     const numRows = this.dataSource.data.length;
+    //const numRows = this.dataSource.length;
     return numSelected === numRows;
   }
   masterToggle() {
     this.isAllSelected() ?
-        this.selection.clear() :
-        this.dataSource.data.forEach(row => this.selection.select(row));
-  }
+    this.selection.clear() :
+      //comment line 46 and uncomment line 47 after build
+    this.dataSource.data.forEach(row => this.selection.select(row));
+    //this.dataSource.forEach(row => this.selection.select(row));
 
-  applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
-    this.dataSource.data.filter = filterValue;
   }
 }
 export interface Element {
@@ -82,7 +80,6 @@ const ELEMENT_DATA: Element[] = [
   { reference: Math.floor(100000 + Math.random() * 900000), name: 'Calcium', deployments: '34.7K', volume: 'Ca', date: 'Dec, 13 2017', content:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.' },
 ];
 export class ExampleDataSource extends DataSource<any> {
-  /** Connect function called by the table to retrieve one stream containing the data to render. */
   connect(): Observable<Element[]> {
     const rows = [];
     ELEMENT_DATA.forEach(element => rows.push(element, { detailRow: true, element }));
