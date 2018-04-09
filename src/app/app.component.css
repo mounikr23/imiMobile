@@ -1,0 +1,143 @@
+/*.example-container {
+  display: flex;
+  flex-direction: column;
+  max-height: 500px;
+  min-width: 300px;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}
+
+.mat-column-select {
+  overflow: visible;
+}
+*/
+
+header{
+	/*padding: 20px;
+	display: flex;*/
+	display: flex;
+	height: 50px;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 10px;
+	/*height: 50px;*/
+}
+img{
+	height: 30px;
+}
+.main-content{
+	padding: 0px 20px;
+}
+.dashboard-nav{
+	padding: 20px 0px;
+	font-size: 12px;
+}
+.content{
+	/*height: 100%;*/
+    /*padding: 10px 0px 0px 10px;*/
+    height: 100%;
+	/*display: inline-block;
+    width: 100%;
+    height: 100%;*/
+   /* flex: 0 0 auto;
+    align-self: center;*/
+}
+.content-left{
+	width: 100%;
+    /*align-self: center;*/
+    align-self: center;
+}
+.user-name {
+    /*flex: 1;*/
+    align-self: center;
+    /*text-align: right;*/
+    white-space: nowrap;
+    padding: 0px 20px;
+}
+.name-intials {
+    width: 40px;
+    text-align: center;
+    height: 40px;
+    background: red;
+    border-radius: 50%;
+    color: white;
+    font-size: 20px;
+    line-height: 2;
+}
+.content-right{
+	display: flex;
+    align-self: center;
+    margin-top: 5px;
+    justify-content: flex-end;
+	/*display: flex;
+    float: right;
+    margin: 0 0 0 auto;*/
+    /*.user-initals{
+    	width: 
+    }*/
+    /*margin-top: 20px;*/
+    /*float: right;*/
+}
+.main-content{
+	background: cyan;
+}
+.listings-group{
+	display: flex;
+
+}
+h3{
+	color: forestgreen;
+	padding: 0px 10px;
+}
+.mat-select{
+	text-align: center;
+	/*font-size: 14px;*/
+}
+.example-container {
+  display: flex;
+  border-radius: 8px;
+  flex-direction: column;
+  /*max-height: 500px;*/
+  min-width: 300px;
+}
+.active{
+	background: lightcyan;
+}
+.mat-header-cell{
+	font-weight: bold;
+}
+.mat-table {
+  overflow: auto;
+  border-radius: 8px;
+  /*max-height: 500px;*/
+}
+.mat-header-row{
+    border-top: 2px solid darkcyan;
+    border-bottom: 2px solid darkcyan;
+    background: aqua;
+}
+.mat-column-expandedDetail{
+	border-radius: 8px;
+}
+.element-row {
+  position: relative;
+}
+
+.element-row:not(.expanded) {
+  cursor: pointer;
+}
+
+.element-row:not(.expanded):hover {
+  background: #f5f5f5;
+}
+
+.element-row.expanded {
+  border-bottom-color: transparent;
+}
+.element-expanded-row{
+    border: 20px solid lightgray;
+    padding: 10px;
+}

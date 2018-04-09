@@ -1,20 +1,106 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<div>
+<header>
+  <!-- <div class="content"> -->
+    <div class="content-left">
+    <img src="assets\IMImoblie-1200px-logo.png">
+      <a class="icon-left">icon</a>
+      </div>
+    <div class="content-right">
+      <p class="user-name">Welcome Mounik</p>
+      <p class="name-intials">MR</p>
+    </div>
+  <!-- </div> -->
+</header>
+<div class="main-content">
+  <p class="dashboard-nav">Dashboard Home / Campaign Listing - All Deployments</p>
+  <div class="listings-group">
+    <h3>Campaigns Listing for</h3>
+      <mat-form-field>
+        <mat-select [(value)]="selected">
+          <mat-option *ngFor="let deployment of deployments" [value]="deployment.value">
+            {{ deployment.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  </div>
+  <div class="example-container mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource">
+
+      <!-- Checkbox Column -->
+      <ng-container matColumnDef="select">
+        <mat-header-cell *matHeaderCellDef>
+          <mat-checkbox (change)="$event ? masterToggle() : null"
+                        [checked]="selection.hasValue() && isAllSelected()"
+                        [indeterminate]="selection.hasValue() && !isAllSelected()">
+          </mat-checkbox>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <mat-checkbox (click)="$event.stopPropagation()"
+                        (change)="$event ? selection.toggle(row) : null"
+                        [checked]="selection.isSelected(row)">
+          </mat-checkbox>
+        </mat-cell>
+      </ng-container>
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+        <p>2131231231</p>
+        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="reference">
+        <mat-header-cell *matHeaderCellDef> Reference ID </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.reference}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="date">
+        <mat-header-cell *matHeaderCellDef> Last Deployed </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.date}} </mat-cell>
+      </ng-container>
+
+
+      <ng-container matColumnDef="deployments">
+        <mat-header-cell *matHeaderCellDef> Deployments </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.deployments}} </mat-cell>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="volume">
+        <mat-header-cell *matHeaderCellDef> Delivered Volume </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.volume}} </mat-cell>
+      </ng-container>
+      <!-- <ng-container matColumnDef="symbol">
+        <mat-header-cell *matHeaderCellDef> Deployments </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
+      </ng-container> -->
+      <ng-container matColumnDef="expandedDetail">
+        <mat-cell *matCellDef="let detail"> 
+          {{detail.element.content}}
+        </mat-cell>
+      </ng-container>
+      <!-- <ng-container matColumnDef="volume">
+        <mat-header-cell *matHeaderCellDef> Delivered Volume </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.volume}} </mat-cell>
+      </ng-container> -->
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <!-- <mat-row *matRowDef="let row; columns: displayedColumns;"
+               (click)="selection.toggle(row)">
+      </mat-row> -->
+      <mat-row *matRowDef="let row; columns: displayedColumns;"
+              matRipple 
+              class="element-row" 
+              [class.expanded]="expandedElement == row"
+              [class.active]="expandedElement == row"
+              (click)="expandedElement = row; sampleFunc();"></mat-row>
+      <mat-row *matRowDef="let row; columns: ['expandedDetail']; when: isExpansionDetailRow"
+              [@detailExpand]="row.element == expandedElement ? 'expanded' : 'collapsed'" [class.element-expanded-row]="row.element == expandedElement" 
+              style="overflow: hidden">
+      </mat-row>
+    </mat-table>
+  </div>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+</div>
 
